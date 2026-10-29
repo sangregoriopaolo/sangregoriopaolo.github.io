@@ -80,13 +80,22 @@
     .hero { padding: 96px 0 72px; }
     .eyebrow { font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
     .hero h1 {
-      font-size: clamp(2.6rem, 6.4vw, 4.4rem); line-height: 1.02; letter-spacing: -0.035em;
+      font-size: clamp(2.5rem, 5.2vw, 3.5rem); line-height: 1.02; letter-spacing: -0.035em;
       font-weight: 700; margin: 18px 0 0;
     }
     .hero h1 em { font-style: normal; color: var(--accent); }
     .hero .lede { font-size: 1.15rem; color: var(--muted); max-width: 600px; margin: 24px 0 0; }
-    .who { display: flex; align-items: center; gap: 16px; margin-top: 36px; }
-    .who img { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 1px solid var(--border); }
+    .hero-grid { display: grid; grid-template-columns: 1fr 280px; gap: 56px; align-items: center; }
+    .portrait { position: relative; }
+    .portrait::before {
+      content: ""; position: absolute; inset: -18px; border-radius: 40px;
+      background: radial-gradient(closest-side, var(--bg-glow-1), transparent); filter: blur(8px); z-index: -1;
+    }
+    .portrait img {
+      display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; border-radius: 28px;
+      border: 1px solid var(--border); box-shadow: 0 24px 60px -24px rgba(0, 0, 0, 0.55);
+    }
+    .who { margin-top: 32px; }
     .who strong { display: block; font-weight: 600; }
     .who span { color: var(--muted); font-size: 0.92rem; }
     .cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
@@ -148,7 +157,10 @@
     @media (max-width: 720px) {
       .wrap { padding: 0 16px; }
       nav ul { display: none; }
-      .hero { padding: 64px 0 48px; }
+      .hero { padding: 40px 0 48px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 28px; }
+      .portrait { order: -1; width: 132px; }
+      .portrait img { border-radius: 24px; }
       .stats { grid-template-columns: 1fr 1fr; margin-bottom: 64px; }
       section { margin-bottom: 64px; }
       .job { grid-template-columns: 1fr; gap: 4px; padding: 18px 16px; }
@@ -174,17 +186,19 @@
 
   <main class="wrap">
     <header class="hero">
+      <div class="hero-grid">
+      <div>
       <div class="eyebrow mono">Applied AI · AI Safety · Engineering Leadership</div>
       <h1>Shipping AI that's<br>useful <em>and</em> safe.</h1>
       <p class="lede">Staff Forward Deployed Engineer for Applied AI at Google. Previously led Gen AI Safety engineering, growing a team from 4 to 17.</p>
-      <div class="who">
-        <img src="assets/paolo.jpg" alt="Portrait of Paolo Sangregorio" width="56" height="56">
-        <div><strong>Paolo Sangregorio</strong><span>Milan, Italy</span></div>
-      </div>
+      <div class="who"><strong>Paolo Sangregorio</strong><span>Milan, Italy</span></div>
       <div class="cta">
         <a class="btn primary" href="mailto:sangregorio.paolo@gmail.com">Get in touch</a>
         <a class="btn" href="https://www.linkedin.com/in/sangregoriopaolo/">LinkedIn</a>
         <a class="btn" href="https://github.com/sangregoriopaolo">GitHub</a>
+      </div>
+      </div>
+      <div class="portrait"><img src="assets/paolo.jpg" alt="Portrait of Paolo Sangregorio" width="280" height="280"></div>
       </div>
     </header>
 
